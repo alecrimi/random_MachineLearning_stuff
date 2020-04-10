@@ -1,10 +1,5 @@
-# This is a demo of running face recognition on a Raspberry Pi.
-# This program will print out the names of anyone it recognizes to the console.
-
-# To run this, you need a Raspberry Pi 2 (or greater) with face_recognition and
-# the picamera[array] module installed.
-# You can follow this installation instructions to get your RPi set up:
-# https://gist.github.com/ageitgey/1ac8dbe8572f3f533df6269dab35df65
+# Script that detect a face from a Raspberry pi camera and check if it is similar to the picture faces of me.
+# If an intrusion is detected, the picture is saved
 
 import face_recognition
 import picamera
@@ -13,9 +8,6 @@ import numpy as np
 #import io
 import time
 from datetime import date
-
-#img = Image.new('RGB',(2000,700), color =(73,109,137))
-
 
 # Get a reference to the Raspberry Pi camera.
 # If this fails, make sure you have a camera connected to the RPi and that you
@@ -62,26 +54,10 @@ while True:
             name = "Alessandro"
             print("I see {}!".format(name)) 
             print("Hi Ale, how are you?" ) 
-
-            today = date.today()
-
             camera.start_preview(fullscreen=False,window=(100,200,600,800))
             time.sleep(2)
-            camera.capture('/home/pi/Documents/intrusions/'+today.strftime("%m-%d-%Y")+'.jpg')
             camera.stop_preview()
-
-          #  import pygame
-          #  pygame.mixer.init()
-          #  pygame.mixer.music.load("not.mp3")
-          #  pygame.mixer.music.play()
-          #  while pygame.mixer.music.get_busy() == True:
-          #    continue
-
-
-#            d = ImageDraw.Draw(img)
-#            d.text((10,10),"You are NOT Alessandro",fill=(255,255,0))
-#            img.show()
-        else: 
+         else: 
             print("You are not Alessandro")
             today = date.today()
             camera.start_preview(fullscreen=False,window=(100,200,600,800))
