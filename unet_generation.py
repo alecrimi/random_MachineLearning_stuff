@@ -1,5 +1,4 @@
 #Unet for image generation R0b3rt0 T0r0
-
 import tensorflow as tf
 import os
 import time
@@ -13,7 +12,7 @@ BUFFER_SIZE = 400
 BATCH_SIZE = 20
 IMG_WIDTH = 128
 IMG_HEIGHT = 128
-EPOCHS = 3000
+EPOCHS = 1000
 
 # Image preprocessing and data augmentation
 PATH = os.path.join(os.path.abspath("/content/"), 't1t2/')
@@ -93,7 +92,7 @@ unet = tf.keras.Model(inputs, x8)
 unet_optimizer = tf.optimizers.Adam(learning_rate=0.001)
 unet.compile(optimizer=unet_optimizer, loss='mean_squared_error')
 
-unet.fit(train_dataset, steps_per_epoch=400, epochs=EPOCHS)
+unet.fit(train_dataset, steps_per_epoch=400, epochs=EPOCHS,verbose=2)
 
 iterator = iter(test_dataset)
 el = iterator.get_next()
